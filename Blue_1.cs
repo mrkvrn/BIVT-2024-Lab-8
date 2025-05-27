@@ -25,7 +25,7 @@ namespace Lab_8
                 return;
             }
 
-            string[] input = _input.Split(' ');
+            string[] input = _input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             string[] res = new string[input.Length];
             int count = 0;
             string line = "";
@@ -42,10 +42,7 @@ namespace Lab_8
             }
             if (!string.IsNullOrEmpty(line)) res[count++] = line;
             _output = new string[count];
-            for (int i = 0; i < count; i++)
-            {
-                _output[i] = res[i];
-            }
+            Array.Copy(res, _output, count);
         }
         public override string ToString()
         {

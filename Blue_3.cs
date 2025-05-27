@@ -18,10 +18,7 @@ namespace Lab_8
                 if (_output == null) return null;
 
                 (char, double)[] output = new (char, double)[_output.Length];
-                for (int i = 0; i < _output.Length; i++)
-                {
-                    output[i] = _output[i];
-                }
+                Array.Copy(_output, output, _output.Length);
                 return output;
             }
         }
@@ -76,18 +73,21 @@ namespace Lab_8
 
         public override string ToString()
         {
-            if (_output == null) return null;
-            string res = "";
+            if (_output == null || _output.Length == 0) return string.Empty;
+            //string res = "";
+            var res = new StringBuilder();
+            
             for (int i = 0; i < _output.Length; i++)
             {
-                res += $"{_output[i].Item1} - {Math.Round(_output[i].Item2, 4)}";
+                //res += $"{_output[i].Item1} - {Math.Round(_output[i].Item2, 4)}";
+                res.Append($"{_output[i].Item1} - {_output[i].Item2:F4}");
                 if (i < _output.Length - 1)
                 {
-                    res += Environment.NewLine;
+                    res.AppendLine();
                 }
             }
-            res = res.TrimEnd('\n');
-            return res;
+            //res = res.TrimEnd('\n');
+            return res.ToString();
         }
     }
 }

@@ -10,8 +10,16 @@ namespace Lab_8
     public class Blue_1 : Blue
     {
         private string[] _output;
-        public string[] Output => _output;
-
+        public string[] Output
+        {
+            get
+            {
+                if (_output == null) return null;
+                string[] output = new string[_output.Length];
+                Array.Copy(_output, output, _output.Length);
+                return output;
+            }
+        }
         public Blue_1(string input) : base(input)
         {
             _output = null;
